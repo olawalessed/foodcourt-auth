@@ -1,14 +1,25 @@
 // import React from "react";
 import { checkboxesInfo } from "../../../utils/passwordCriteriaData";
-import { useCheckBoxStore } from "../../../store/checkBoxStore";
+import {
+    storedCheckboxes,
+  updateLocalStorage,
+  useCheckBoxStore,
+} from "../../../store/checkBoxStore";
+import { useEffect } from "react";
 
 export default function CheckBoxGroup() {
+  const checkboxes = useCheckBoxStore((x) => x.checkboxes);
+  const toggleCheckBox = useCheckBoxStore((t) => t.toggleCheckbox);
 
-
-    const checkboxes = useCheckBoxStore(x => x.checkboxes)
-    const toggleCheckBox = useCheckBoxStore(t => t.toggleCheckbox)
-
-    console.log(checkboxes)
+  // Handle checkbox store update
+  useEffect(() => {
+    
+    return updateLocalStorage(checkboxes);
+  
+  }, [checkboxes])
+  
+  console.log(localStorage.getItem("checkboxes"))
+  console.log(storedCheckboxes)
 
   return (
     <>

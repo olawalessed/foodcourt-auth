@@ -2,22 +2,24 @@
 import React from "react";
 // import { CLOSE_MODAL } from "../../store/modalConstants";
 import { Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay } from "@chakra-ui/react";
+import { useModalStore } from "../../store/modalStore";
+import { XMarkIcon } from "@heroicons/react/16/solid";
 
 interface ModalContainerProps {
-  openModal: boolean;
-  handleCloseModal: () => void;
   children: React.ReactNode;
 };
 export default function ModalContainer({
-  openModal,
-  handleCloseModal,
   children,
 }: ModalContainerProps) {
+
+  const isModalOpen = useModalStore(m => m.isModalOpen)
+  const closeModal = useModalStore(c => c.closeModal)
+
   return (
     <>
       <Modal
-        isOpen={openModal}
-        onClose={handleCloseModal}
+        isOpen={isModalOpen}
+        onClose={closeModal}
         blockScrollOnMount={true}
         isCentered
         size={"xl"}
@@ -31,7 +33,13 @@ export default function ModalContainer({
         />
         <ModalContent bg={'transparent'} shadow={'none'}>
           <ModalBody padding={0}>
-            <div className=" p-10 rounded-3xl bg-white">{children}</div>
+            <div className=" p-10 rounded-3xl bg-white">
+            <div className="flex justify-end">
+            <button className="w-10 h-10 bg-gray-100 rounded-full flex justify-center items-center cursor-pointer" onClick={closeModal}>
+            <XMarkIcon className="w-7 h-7" />
+            </button>
+        </div>
+              {children}</div>
           </ModalBody>
         </ModalContent>
       </Modal>

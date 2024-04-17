@@ -5,9 +5,13 @@ import MainForm from "./components/main/MainForm";
 import SettingsMenu from "./components/settings/SettingsMenu";
 import ModalContainer from "./components/re-usable/ModalContainer";
 import SettingsContent from "./components/settings/SettingsContent";
+import useCheckSettings from "./hooks/useCheckSettings";
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
+
+  // hook
+  useCheckSettings()
 
   function handleOpenModal() {
     console.log("Open modal");
@@ -24,12 +28,9 @@ function App() {
   return (
     <>
       <MainLayout>
-        <SettingsMenu openModal={openModal} handleOpenModal={handleOpenModal} />
+        <SettingsMenu/>
         <MainForm />
-        <ModalContainer
-          openModal={openModal}
-          handleCloseModal={handleCloseModal}
-        >
+        <ModalContainer>
           <SettingsContent />
         </ModalContainer>
       </MainLayout>

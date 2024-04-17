@@ -7,15 +7,20 @@ export type CheckBoxName =
   | "specialCharacter"
   | "minLength";
 
+interface CheckBoxObject {
+  uppercase: boolean;
+  lowercase: boolean;
+  figure: boolean;
+  specialCharacter: boolean;
+  minLength: boolean;
+}
+
 interface CheckBoxType {
-  checkboxes: {
-    uppercase: boolean;
-    lowercase: boolean;
-    figure: boolean;
-    specialCharacter: boolean;
-    minLength: boolean;
-  };
+  checkboxes: CheckBoxObject;
+  isFormActive: boolean;
   toggleCheckbox: (name: CheckBoxName) => void;
+//   disableFormInput: () => void;
+//   enableFormInput: () => void;
 }
 
 const useCheckBoxStore = create<CheckBoxType>()((set) => ({
@@ -26,6 +31,7 @@ const useCheckBoxStore = create<CheckBoxType>()((set) => ({
     specialCharacter: false,
     minLength: false,
   },
+  isFormActive: false,
   toggleCheckbox: (name) =>
     set((state) => ({
       checkboxes: {
@@ -33,21 +39,23 @@ const useCheckBoxStore = create<CheckBoxType>()((set) => ({
         [name]: !state.checkboxes[name],
       },
     })),
+//   disableFormInput: () => set(() => ({ isFormActive: true })),
+//   enableFormInput: () => set(() => ({ isFormActive: false })),
 }));
 
-// const updateLocalStorage = (checkboxes: CheckBoxType) => {
-//   localStorage.setItem("checkboxes", JSON.stringify(checkboxes));
-// };
+const updateLocalStorage = (checkboxes: CheckBoxObject) => {
+  localStorage.setItem("checkboxes", JSON.stringify(checkboxes));
+};
 
-// const checkBoxValues = localStorage.getItem("checkboxes")!;
-// const storedCheckboxes = JSON.parse(checkBoxValues);
-// if (storedCheckboxes) {
-//   useCheckBoxStore.setState((state) => ({
-//     checkboxes: {
-//       ...state.checkboxes,
-//       ...storedCheckboxes,
-//     },
-//   }));
-// }
+const checkBoxValues = localStorage.getItem("checkboxes")!;
+const storedCheckboxes = JSON.parse(checkBoxValues);
+if (storedCheckboxes) {
+  useCheckBoxStore.setState((state) => ({
+    checkboxes: {
+      ...state.checkboxes,
+      ...storedCheckboxes,
+    },
+  }));
+}
 
-export { useCheckBoxStore }; //updateLocalStorage }
+export { useCheckBoxStore, storedCheckboxes, updateLocalStorage }; //updateLocalStorage }
