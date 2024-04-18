@@ -8,10 +8,10 @@ import useCheckSettings from "./hooks/useCheckSettings";
 function App() {
   useCheckSettings();
 
-  // Disable console log in browser
-  if (process.env.NODE_ENV === "production") {
-    console.log({});
+  if (process.env.NODE_ENV === 'production') {
+    console.log = function () {};
   }
+  
 
   return (
     <>
