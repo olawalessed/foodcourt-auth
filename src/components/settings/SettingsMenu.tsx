@@ -1,15 +1,11 @@
 // import React from 'react'
 
 import { Cog6ToothIcon } from "@heroicons/react/20/solid";
-import { initialState, reducer } from "../../store/modalReducer";
-import { useReducer } from "react";
-import { OPEN_MODAL } from "../../store/modalConstants";
 import { useModalStore } from "../../store/modalStore";
 import useCheckSettings from "../../hooks/useCheckSettings";
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
-  QuestionMarkCircleIcon,
 } from "@heroicons/react/16/solid";
 
 export default function SettingsMenu() {

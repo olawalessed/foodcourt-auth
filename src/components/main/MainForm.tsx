@@ -9,7 +9,6 @@ import {
 import { Alert, AlertIcon, Spacer } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import useInputValidator from "../../hooks/useInputValidator";
-import { useCheckBoxStore } from "../../store/checkBoxStore";
 import useCheckboxChangeHandler from "../../hooks/useCheckboxHandler";
 
 export default function MainForm() {
@@ -19,8 +18,6 @@ export default function MainForm() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [inputIsValid, setInputIsValid] = useState(false);
-
-  const { checkboxes } = useCheckBoxStore();
 
   const {
     email,
