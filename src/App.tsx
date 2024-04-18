@@ -8,10 +8,11 @@ import useCheckSettings from "./hooks/useCheckSettings";
 function App() {
   useCheckSettings();
 
-  if (process.env.NODE_ENV === 'production') {
-    console.log = function () {};
+  if (typeof process !== undefined) {
+    if (process.env.NODE_ENV === "production") {
+      console.log = function () {};
+    }
   }
-  
 
   return (
     <>
