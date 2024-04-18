@@ -8,7 +8,7 @@ export default function MainLayout({
 }) {
   return (
     <>
-      <div className="flex flex-col h-[89vh] justify-between">
+      <div className="flex flex-col h-[89vh] md:h-screen justify-between">
         <HeaderBar />
         <div className="w-full md:mx-auto md:h-[80vh] flex items-center justify-center">
           <div className="p-10 md:p-16 md:w-[700px] rounded-xl bg-white drop-shadow">

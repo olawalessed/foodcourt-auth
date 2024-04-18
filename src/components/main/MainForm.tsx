@@ -6,7 +6,7 @@ import {
   checkPasswordStrength,
   pwc,
 } from "../../utils/validInputChecker";
-import { Alert, AlertIcon } from "@chakra-ui/react";
+import { Alert, AlertIcon, Spacer } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import useInputValidator from "../../hooks/useInputValidator";
 import { useCheckBoxStore } from "../../store/checkBoxStore";
@@ -126,7 +126,7 @@ export default function MainForm() {
             {/* // TODO: Convert to component */}
             <div
               className={`h-10 flex items-center justify-between pt-2.5 pb-5 ${
-                disableFormInput || !password.length ? "opacity-0" : "flex"
+                disableFormInput || !password.length ? "hidden" : "flex"
               }`}
             >
               <p className="text-gray-400">
@@ -164,6 +164,7 @@ export default function MainForm() {
               </div>
             </div>
 
+            <Spacer className="py-1" />
             <button
               type="button"
               disabled={passwordError.length !== 0 || !inputIsValid}
@@ -171,6 +172,9 @@ export default function MainForm() {
             >
               Submit
             </button>
+            <div className="mt-2">
+              <p className="font-book text-sm md:text-base">I have an account already <span className="text-sky-800">Login</span></p>
+            </div>
           </form>
         </div>
       </div>
