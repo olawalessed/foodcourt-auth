@@ -1,11 +1,11 @@
 import { Reducer } from "react";
 import { OPEN_MODAL, CLOSE_MODAL } from "./modalConstants";
 
-type ModalAction = {
+interface ModalAction {
   type: string;
 }
 
-type ModalState = {
+interface ModalState {
   openModal: boolean;
 };
 
@@ -19,7 +19,7 @@ const reducer: Reducer<ModalState, ModalAction> = (
 ) => {
   switch (action.type) {
     case OPEN_MODAL:
-      console.log("oprer")
+      // console.log("Track modal operation", action.type)
       return { openModal: true };
     case CLOSE_MODAL:
       return { openModal: false };

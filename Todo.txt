@@ -1,0 +1,3 @@
+- Properly track user checkbox changes
+- Update folder structure
+- Refactor UI styling

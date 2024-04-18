@@ -1,25 +1,21 @@
 // import React from "react";
 import { checkboxesInfo } from "../../../utils/passwordCriteriaData";
 import {
-    storedCheckboxes,
   updateLocalStorage,
   useCheckBoxStore,
 } from "../../../store/checkBoxStore";
 import { useEffect } from "react";
+import useCheckboxChangeHandler from "../../../hooks/useCheckboxHandler";
 
 export default function CheckBoxGroup() {
   const checkboxes = useCheckBoxStore((x) => x.checkboxes);
-  const toggleCheckBox = useCheckBoxStore((t) => t.toggleCheckbox);
 
-  // Handle checkbox store update
+  const { handleCheckboxChange } = useCheckboxChangeHandler();
+
+  // Handle checkbox storage update
   useEffect(() => {
-    
     return updateLocalStorage(checkboxes);
-  
-  }, [checkboxes])
-  
-  console.log(localStorage.getItem("checkboxes"))
-  console.log(storedCheckboxes)
+  }, [checkboxes]);
 
   return (
     <>
@@ -34,10 +30,10 @@ export default function CheckBoxGroup() {
               &#8203;
               <input
                 type="checkbox"
-                className="size-6 rounded border-gray-300 text-black border-none"
+                className="size-6 rounded border-gray-300 text-black border-none appearance-auto accent-black"
                 id={`${i}`}
                 checked={checkboxes[criteria.value]}
-                onChange={() => toggleCheckBox(criteria.value)}
+                onChange={() => handleCheckboxChange(criteria.value)}
               />
             </div>
 

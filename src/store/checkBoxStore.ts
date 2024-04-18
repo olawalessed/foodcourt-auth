@@ -58,4 +58,8 @@ if (storedCheckboxes) {
   }));
 }
 
-export { useCheckBoxStore, storedCheckboxes, updateLocalStorage }; //updateLocalStorage }
+const nonHookCheckBoxStoreValue = () => {
+  return useCheckBoxStore.getState()
+}
+
+export { useCheckBoxStore, storedCheckboxes, updateLocalStorage, nonHookCheckBoxStoreValue }; //updateLocalStorage }
